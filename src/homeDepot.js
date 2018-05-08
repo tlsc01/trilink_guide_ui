@@ -6,6 +6,7 @@ import ModelSelect from "./selects/modelSelect";
 import BarlengthSelect from './selects/barlengthSelect';
 import PitchSelect from './selects/pitchSelect';
 import GaugeSelect from './selects/gaugeSelect';
+import './homeDepot.css';
 import { Api } from './services/api';
 import { Button, Grid, Row, Col } from 'react-bootstrap';
 import { bootstrapUtils } from 'react-bootstrap/lib/utils'
@@ -221,41 +222,32 @@ class LandingPage extends Component {
 
   render() {
     return (
-      <Grid fluid>
-        <Row className="show-grid">
-          <Col md={12}>
-            <table className="selects-table" border="0" cellPadding="0" cellSpacing="0">
-              <tbody>
-                <tr>
-                  <td colSpan="2" valign="bottom">
-                    <div align="center">
-                      <img src="icon_saw.jpg" width="163" height="86" alt="Brand / Model"/>
-                    </div>
-                  </td>
-                  <td valign="bottom">
-                    <div align="left">
-                      <img src="icon_bar.jpg" width="103" height="56" alt="Bar Length"/>
-                    </div>
-                  </td>
-                  <td valign="bottom">
-                    <div align="left">
-                      <img src="icon_pitch.jpg" width="97" height="64" alt="Pitch"/>
-                    </div>
-                  </td>
-                  <td valign="bottom">
-                    <div align="center">
-                      <img src="icon_gauge.jpg" width="33" height="60" alt="Gauge"/>
-                    </div>
-                  </td>
-                </tr>
-                <tr>
-                  <th className="brand">HD</th>
-                  <th className="model">MODEL</th>
-                  <th className="barlength">BARLENGTH</th>
-                  <th className="pitch">PITCH</th>
-                  <th className="gauge">GAUGE</th>
-                </tr>
-                <tr>
+      <div>
+        <div className="header">
+          <a href="http://www.homedepot.com">
+            <img src="header.png" alt="" />
+          </a>
+        </div>
+        <div className="container">
+          <div className="guide-title">
+            CHAIN REPLACEMENT GUIDE
+          </div>
+          <p id="guide-description">
+            Start with your chainsaw brand and let us help you find your replacement chain.
+            <br/>
+            <span id="orange">LET US DO THE WORK!</span>
+            Pitch and Gauge will automatically fill when possible.
+          </p>
+          <br/>
+          <br/>
+          <br/>
+          <table width="100%" border="0" cellspacing="0" cellpadding="0">
+            <tr>
+              <td colspan="5">
+                <img src="arrows.png" width="100%" alt="Bar Length" />
+              </td>
+            </tr>
+            <tr>
                   <td>
                     <BrandSelect
                       brands={this.state.brands}
@@ -292,26 +284,9 @@ class LandingPage extends Component {
                     />
                   </td>
                 </tr>
-              </tbody>
-            </table>
-          </Col>
-        </Row>
-        <br/>
-        <Row>
-          <Col md={12}>
-            <div style={{textAlign: 'center'}}>
-              <Button disabled={this.state.searchDisabled} bsStyle="custom" onClick={() => this.handleSearchReplacement()}>Search</Button>
-              {"    "}
-              <Button onClick={() => this.resetSearch()}>Reset Search</Button>
-            </div>
-          </Col>
-        </Row>
-        <Row>
-          <Col md={12}>
-            <Replacements replacements={this.state.replacements}/>
-          </Col>
-        </Row>
-      </Grid>
+          </table>
+        </div>
+      </div>
     )
   }
 }

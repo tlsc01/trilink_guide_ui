@@ -1,0 +1,29 @@
+.header img {
+	width: 100%;
+	height: 21%;
+}
+
+.container {
+  max-width: 790px;
+  margin: 0 auto;
+}
+
+.guide-title {
+  font-family: "proxima-nova", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  color: #231f20;
+  font-size: 34px;
+  font-weight: 600;
+}
+
+#guide-description {
+  font-family: "proxima-nova", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-weight: 500;
+  color: #231f20;
+  font-size: 24px;
+}
+
+#orange {
+  color: #f47b2a;
+  font-weight: 600;
+  font-family: "proxima-nova", "Helvetica Neue", Helvetica, Arial, sans-serif;
+}
