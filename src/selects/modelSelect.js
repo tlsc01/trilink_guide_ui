@@ -10,12 +10,15 @@ const buildModels = (incomingModels, selectedModel, handleModelChange) => {
   options.unshift(<option key='none_selected' value="">Select a Model</option>)
 
   return (
-    <select
-      id="model"
-      onChange={handleModelChange}
-      value={selectedModel}>
-      {options}
-    </select>
+    <div className="custom-select">
+      <select
+        id="model"
+        onChange={handleModelChange}
+        value={selectedModel}
+        style={{width: '100%'}}>
+        {options}
+      </select>
+    </div>
   );
 }
 

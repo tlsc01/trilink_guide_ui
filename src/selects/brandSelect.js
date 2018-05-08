@@ -1,4 +1,5 @@
 import React from 'react';
+import './brand.css';
 
 const buildBrands = (incomingBrands, selectedBrand, handleBrandChange) => {
   let options = incomingBrands.map((brand, index) => {
@@ -10,12 +11,13 @@ const buildBrands = (incomingBrands, selectedBrand, handleBrandChange) => {
   options.unshift(<option key='none_selected' value="">Select a Brand</option>)
 
   return (
-    <select
-      id="brands"
-      onChange={handleBrandChange}
-      value={selectedBrand}>
-      {options}
-    </select>
+    <div className="custom-select">
+      <select
+        onChange={handleBrandChange}
+        value={selectedBrand}>
+        {options}
+      </select>
+    </div>
   );
 }
 

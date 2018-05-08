@@ -1,4 +1,4 @@
-.App {
+/* .App {
   text-align: center;
 }
 
@@ -25,4 +25,27 @@
 @keyframes App-logo-spin {
   from { transform: rotate(0deg); }
   to { transform: rotate(360deg); }
+} */
+
+.custom-select {
+  border: 1px solid #ccc;
+  width: 100%;
+  border-radius: 3px;
+  overflow: hidden;
+  background-color: #b6b7ba;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 16px;
+}
+
+.custom-select select {
+  padding: 5px 8px;
+  border: none;
+  box-shadow: none;
+  background: transparent;
+  -webkit-appearance: none;
+  width: 100%;
+}
+
+.custom-select select:focus {
+  outline: none;
 }

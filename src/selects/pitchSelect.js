@@ -10,12 +10,15 @@ const buildPitches = (incomingPitches, selectedPitch, handlePitchChange) => {
   options.unshift(<option key='none_selected' value="">Select a Pitch</option>)
 
   return (
-    <select
-      id="pitch"
-      onChange={handlePitchChange}
-      value={selectedPitch}>
-      {options}
-    </select>
+    <div className="custom-select">
+      <select
+        id="pitch"
+        onChange={handlePitchChange}
+        value={selectedPitch}
+        style={{width: '100%'}}>
+        {options}
+      </select>
+    </div>
   );
 }
 

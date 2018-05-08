@@ -1,7 +1,6 @@
 import React from 'react';
 
 const TableRow = (replacement) => {
-    console.log("building table row : ", replacement);
   return (
     <tr>
         <td>{replacement.replacement.chain}</td>

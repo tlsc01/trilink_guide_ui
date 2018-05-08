@@ -10,12 +10,15 @@ const buildBarlengths = (incomingBarlengths, selectedBarlength, handleBarlengthC
   options.unshift(<option key='none_selected' value="">Select a Barlength</option>)
 
   return (
-    <select
-      id="model"
-      onChange={handleBarlengthChange}
-      value={selectedBarlength}>
-      {options}
-    </select>
+    <div className="custom-select">
+      <select
+        id="model"
+        onChange={handleBarlengthChange}
+        value={selectedBarlength}
+        style={{width: '100%'}}>
+        {options}
+      </select>
+    </div>
   );
 }
 

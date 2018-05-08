@@ -10,12 +10,15 @@ const buildKickbacks = (incomingKickbacks, selectedKickback, handleKickbackChang
   options.unshift(<option key='none_selected' value="">Select a Kickback</option>)
 
   return (
-    <select
-      id="kickback"
-      onChange={handleKickbackChange}
-      value={selectedKickback}>
-      {options}
-    </select>
+    <div className="custom-select">
+      <select
+        id="kickback"
+        onChange={handleKickbackChange}
+        value={selectedKickback}
+        style={{width: '100%'}}>
+        {options}
+      </select>
+    </div>
   );
 }
 

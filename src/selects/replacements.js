@@ -21,7 +21,7 @@ const Replacements = (props) => {
   return (
     <div>
       <h3>REPLACEMENT CHAIN / FIT-UP RESULTS</h3>
-      <table border="1" width="100%" border="0" cellspacing="0" cellpadding="0">
+      <table style={{width: '100%'}}>
         <thead>
           <tr>
             <th>CHAIN*</th>
