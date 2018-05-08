@@ -20,6 +20,7 @@ class LandingPage extends Component {
       barlengths: [],
       kickbacks: [],
       gauges: [],
+      searchDisabled: true,
       replacements: [],
       selectedBrand: '',
       selectedModel: '',
@@ -30,7 +31,16 @@ class LandingPage extends Component {
     }
   }
 
+  enableSearch = () => {
+    this.setState({ searchDisabled: false });
+  }
+
+  disableSearch = () => {
+    this.setState({ searchDisabled: true });
+  }
+
   handleBrandChange = (e) => {
+    this.setState({ replacements: [] });
     this.setState({ selectedBrand: e.target.value });
     const brand = e.target.value;
     Api.getModels(e.target.value)
@@ -47,6 +57,8 @@ class LandingPage extends Component {
               if (data.length === 1) {
                 const barlength = data[0].barlength;
                 this.setState({selectedBarlength: barlength});
+                this.enableSearch();
+
                 Api.getPitches(brand, model, barlength)
                 .then(data => {
                   this.setState({pitches: data});
@@ -65,12 +77,23 @@ class LandingPage extends Component {
                             .then(data => {
                               this.setState({kickbacks: data})
                             });
-                        }
+                        } 
                       });
                   }
                 })
               }
             });
+        } else if (data.length === 0 || data.length > 1) {
+          console.log('Clearing the selected model');
+          this.setState({
+            selectedModel: '',
+            selectedBarlength: '',
+            selectedPitch: '',
+            selectedGauge: '',
+            selectedKickback: '',
+            replacements: [],
+          });
+          this.disableSearch();
         }
       });
   }
@@ -80,6 +103,7 @@ class LandingPage extends Component {
     const brand = this.state.selectedBrand;
 
     this.setState({ selectedModel: model });
+    this.setState({ replacements: [] });
     Api.getBarlengths(this.state.selectedBrand, model)
       .then(data => {
         this.setState({barlengths: data})
@@ -117,8 +141,10 @@ class LandingPage extends Component {
     const barlength = e.target.value;
     const brand = this.state.selectedBrand;
     const model = this.state.selectedModel;
-    
+    this.setState({ replacements: [] });
     this.setState({ selectedBarlength: barlength });
+    this.enableSearch();
+
     Api.getPitches(brand, model, barlength)
       .then(data => {
         this.setState({pitches: data});
@@ -145,20 +171,51 @@ class LandingPage extends Component {
 
   handlePitchChange = (e) => {
     this.setState({ selectedPitch: e.target.value });
+    this.setState({ replacements: [] });
     Api.getGauges(this.state.selectedBrand, this.state.selectedModel, this.state.selectedBarlength, e.target.value);
   }
 
   handleGaugeChange = (e) => {
     this.setState({ selectedGauge: e.target.value });
+    this.setState({ replacements: [] });
     Api.getKickbacks(this.state.selectedBrand, this.state.selectedModel, this.state.selectedBarlength, this.state.selectedGauge, e.target.value);
   }
 
   handleKickbackChange = (e) => {
+    this.setState({ replacements: [] });
     this.setState({ selectedKickback: e.target.value });
   }
 
+  resetSearch = () => {
+    this.setState({
+      models: [],
+      pitches: [],
+      barlengths: [],
+      kickbacks: [],
+      gauges: [],
+      searchDisabled: true,
+      replacements: [],
+      selectedBrand: '',
+      selectedModel: '',
+      selectedBarlength: '',
+      selectedPitch: '',
+      selectedGauge: '',
+      selectedKickback: '',
+    })
+  }
+
   handleSearchReplacement = (e) => {
-    Api.getReplacements(this.state.selectedBrand, this.state.selectedModel, this.state.selectedBarlength, this.state.selectedPitch, this.state.selectedGauge, this.state.selectedKickback);
+    const brand = this.state.selectedBrand;
+    const model = this.state.selectedModel;
+    const barlength = this.state.selectedBarlength;
+    const pitch = this.state.selectedPitch;
+    const gauge = this.state.selectedGauge;
+    const kickback = this.state.selectedKickback;
+
+    Api.getReplacements(brand, model, barlength, pitch, gauge, kickback)
+      .then(data => {
+        this.setState({ replacements: data });
+      })
   }
 
   
@@ -246,9 +303,14 @@ class LandingPage extends Component {
             </table>
           </Col>
         </Row>
+        <br/>
         <Row>
-          <Col md={6} mdOffset={4}>
-            <Button onClick={() => this.handleSearchReplacement()}>Search</Button>
+          <Col md={12}>
+            <div style={{textAlign: 'center'}}>
+              <Button disabled={this.state.searchDisabled} onClick={() => this.handleSearchReplacement()}>Search</Button>
+              {"    "}
+              <Button onClick={() => this.resetSearch()}>Reset Search</Button>
+            </div>
           </Col>
         </Row>
         <Row>
