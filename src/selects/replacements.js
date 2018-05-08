@@ -1,11 +1,12 @@
 import React from 'react';
 import TableRow from './tableRow';
+import './replacements.css';
 
 const buildReplacements = (replacements) => {
   if (replacements.length === 0) {
     return (
       <tr>
-        <td>No Results</td>
+        <td colSpan='7'>No Results</td>
       </tr>
     )
   } else {
@@ -21,7 +22,7 @@ const Replacements = (props) => {
   return (
     <div>
       <h3>REPLACEMENT CHAIN / FIT-UP RESULTS</h3>
-      <table style={{width: '100%'}}>
+      <table className="replacements">
         <thead>
           <tr>
             <th>CHAIN*</th>

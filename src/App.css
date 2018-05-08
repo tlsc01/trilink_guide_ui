@@ -1,38 +1,10 @@
-/* .App {
-  text-align: center;
-}
-
-.App-logo {
-  animation: App-logo-spin infinite 20s linear;
-  height: 80px;
-}
-
-.App-header {
-  background-color: #222;
-  height: 150px;
-  padding: 20px;
-  color: white;
-}
-
-.App-title {
-  font-size: 1.5em;
-}
-
-.App-intro {
-  font-size: large;
-}
-
-@keyframes App-logo-spin {
-  from { transform: rotate(0deg); }
-  to { transform: rotate(360deg); }
-} */
-
 .custom-select {
   border: 1px solid #ccc;
   width: 100%;
   border-radius: 3px;
   overflow: hidden;
-  background-color: #b6b7ba;
+  /* background-color: #b6b7ba; */
+  background-color: #f2f2f2;
   font-family: Arial, Helvetica, sans-serif;
   font-size: 16px;
 }
@@ -48,4 +20,53 @@
 
 .custom-select select:focus {
   outline: none;
+}
+
+.btn-custom {
+  background-color: #160a8b;
+  color: white;
+  opacity: 1 !important;
+}
+
+.btn-custom[hover] {
+  color: red;
+}
+
+.selects-table {
+  width: 100%;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 14px;
+  font-weight: bold;
+}
+
+.selects-table th {
+  padding-top: 12px;
+  padding-bottom: 12px;
+  padding-left: 12px; 
+  text-align: center;
+  color: white;
+}
+
+.selects-table th.brand {
+  background-color: black;
+}
+
+.selects-table th.model {
+  background-color: #58585a;
+}
+
+.selects-table th.barlength {
+  background-color: #77787b;
+}
+
+.selects-table th.pitch {
+  background-color: #8a8c8f;
+}
+
+.selects-table th.gauge {
+  background-color: #a7a9ac;
+}
+
+.selects-table th {
+  border-right: 1px solid #ddd;
 }

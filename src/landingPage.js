@@ -6,9 +6,11 @@ import ModelSelect from "./selects/modelSelect";
 import BarlengthSelect from './selects/barlengthSelect';
 import PitchSelect from './selects/pitchSelect';
 import GaugeSelect from './selects/gaugeSelect';
-import KickbackSelect from './selects/kickbackSelect';
 import { Api } from './services/api';
 import { Button, Grid, Row, Col } from 'react-bootstrap';
+import { bootstrapUtils } from 'react-bootstrap/lib/utils'
+
+bootstrapUtils.addStyle(Button, 'custom');
 
 class LandingPage extends Component {
   constructor() {
@@ -125,10 +127,6 @@ class LandingPage extends Component {
                     if (data.length === 1) {
                       const gauge = data[0].gauge;
                       this.setState({selectedGauge: gauge});
-                      Api.getKickbacks(brand, model, barlength, pitch, gauge)
-                        .then(data => {
-                          this.setState({kickbacks: data})
-                        });
                     }
                   });
               }
@@ -159,10 +157,6 @@ class LandingPage extends Component {
               if (data.length === 1) {
                 const gauge = data[0].gauge;
                 this.setState({selectedGauge: gauge});
-                Api.getKickbacks(brand, model, barlength, pitch, gauge)
-                  .then(data => {
-                    this.setState({kickbacks: data})
-                  });
               }
             });
         }
@@ -178,13 +172,12 @@ class LandingPage extends Component {
   handleGaugeChange = (e) => {
     this.setState({ selectedGauge: e.target.value });
     this.setState({ replacements: [] });
-    Api.getKickbacks(this.state.selectedBrand, this.state.selectedModel, this.state.selectedBarlength, this.state.selectedGauge, e.target.value);
   }
 
-  handleKickbackChange = (e) => {
-    this.setState({ replacements: [] });
-    this.setState({ selectedKickback: e.target.value });
-  }
+  // handleKickbackChange = (e) => {
+  //   this.setState({ replacements: [] });
+  //   this.setState({ selectedKickback: e.target.value });
+  // }
 
   resetSearch = () => {
     this.setState({
@@ -228,10 +221,10 @@ class LandingPage extends Component {
 
   render() {
     return (
-      <Grid>
+      <Grid fluid>
         <Row className="show-grid">
           <Col md={12}>
-            <table width="100%" border="0" cellPadding="0" cellSpacing="0">
+            <table className="selects-table" border="0" cellPadding="0" cellSpacing="0">
               <tbody>
                 <tr>
                   <td colSpan="2" valign="bottom">
@@ -254,6 +247,13 @@ class LandingPage extends Component {
                       <img src="icon_gauge.jpg" width="33" height="60" alt="Gauge"/>
                     </div>
                   </td>
+                </tr>
+                <tr>
+                  <th className="brand">BRAND</th>
+                  <th className="model">MODEL</th>
+                  <th className="barlength">BARLENGTH</th>
+                  <th className="pitch">PITCH</th>
+                  <th className="gauge">GAUGE</th>
                 </tr>
                 <tr>
                   <td>
@@ -291,13 +291,6 @@ class LandingPage extends Component {
                       handleGaugeChange={this.handleGaugeChange}
                     />
                   </td>
-                  <td>
-                    <KickbackSelect
-                      kickbacks={this.state.kickbacks}
-                      selectedKickback={this.state.selectedKickback}
-                      handleKickbackChange={this.handleKickbackChange}
-                    />
-                  </td>
                 </tr>
               </tbody>
             </table>
@@ -307,7 +300,7 @@ class LandingPage extends Component {
         <Row>
           <Col md={12}>
             <div style={{textAlign: 'center'}}>
-              <Button disabled={this.state.searchDisabled} onClick={() => this.handleSearchReplacement()}>Search</Button>
+              <Button disabled={this.state.searchDisabled} bsStyle="custom" onClick={() => this.handleSearchReplacement()}>Search</Button>
               {"    "}
               <Button onClick={() => this.resetSearch()}>Reset Search</Button>
             </div>

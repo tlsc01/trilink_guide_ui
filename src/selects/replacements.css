@@ -1,0 +1,28 @@
+
+.replacements {
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 14px;
+  border-collapse: collapse;
+  width: 100%;
+}
+
+.replacements th {
+  padding-top: 12px;
+  padding-bottom: 12px;
+  padding-left: 12px; 
+  background-color: #160a8b;
+  color: white;
+}
+
+.replacements td, .replacements th {
+  border-right: 1px solid #ddd;
+  padding: 8px;
+}
+
+.replacements tr:nth-child(even) {
+  background-color: #f2f2f2;
+}
+
+.replacements tr:hover {
+  background-color: #ddd;
+}
