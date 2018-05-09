@@ -7,7 +7,7 @@ const Router = () => (
   <main>
     <Switch>
       <Route exact path='/' component={LandingPage}/>
-      <Route path='/home-depot-fitup' component={HomeDepot}/>
+      <Route exact path='/home-depot-fitup' component={HomeDepot}/>
     </Switch>
   </main>
 )
