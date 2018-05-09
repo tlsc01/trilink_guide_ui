@@ -289,7 +289,7 @@ class HomeDepot extends Component {
           <p id="guide-description">
             Start with your chainsaw brand and let us help you find your replacement chain.
             <br/>
-            <span id="orange">LET US DO THE WORK!</span>
+            <span id="orange">LET US DO THE WORK!</span> <br/>
             Pitch and Gauge will automatically fill when possible.
           </p>
           <br/>

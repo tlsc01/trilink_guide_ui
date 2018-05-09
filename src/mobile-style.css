@@ -1,0 +1,120 @@
+#guide-title {
+  font-size: 65px;
+  font-weight: bold;
+  font-family: "proxima-nova", "Helvetica Neue", Helvetica, Arial, sans-serif;
+}
+
+#guide-description {
+  font-size: 65px;
+  font-family: "proxima-nova", "Helvetica Neue", Helvetica, Arial, sans-serif;
+}
+
+#guide-description em {
+  font-weight: bold;
+  font-style: normal;
+  color: #f47b2a;
+  font-family: "proxima-nova", "Helvetica Neue", Helvetica, Arial, sans-serif;
+}
+
+select#brand {
+  color: #fff;
+  background: url("images/mobile_brand.png");
+  border: 1px solid #111;
+  font-family: "proxima-nova", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  width: 100%;
+  padding: 5px 5px 5px 45px;
+  margin-bottom: 5px;
+  font-size: 75px;
+  font-weight: bold;
+  border: 1px solid #ccc;
+  height: 140px;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+}
+
+select#model, select#blank_model {
+  color: #fff;
+  background: url("images/mobile_model.png");
+  border: 1px solid #111;
+  font-family: "proxima-nova", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  width: 100%;
+  margin-bottom: 5px;
+  padding: 5px 5px 5px 45px;
+  font-size: 75px;
+  font-weight: bold;
+  border: 1px solid #ccc;
+  height: 140px;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+}
+
+select#barlength, select#blank_barlength {
+  color: #fff;
+  background: url("images/mobile_barlength.png");
+  border: 1px solid #111;
+  font-family: "proxima-nova", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  width: 100%;
+  margin-bottom: 5px;
+  padding: 5px 5px 5px 45px;
+  font-size: 75px;
+  font-weight: bold;
+  border: 1px solid #ccc;
+  height: 140px;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+}
+
+select#pitch, select#blank_pitch {
+  color: #fff;
+  background: url("images/mobile_pitch.png");
+  border: 1px solid #111;
+  font-family: "proxima-nova", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  width: 100%;
+  margin-bottom: 5px;
+  padding: 5px 5px 5px 45px;
+  font-size: 75px;
+  font-weight: bold;
+  border: 1px solid #ccc;
+  height: 140px;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+}
+
+select#gauge, select#blank_gauge {
+  color: #fff;
+  background: url("images/mobile_gauge.png");
+  border: 1px solid #111;
+  font-family: "proxima-nova", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  width: 100%;
+  margin-bottom: 5px;
+  padding: 5px 5px 5px 45px;
+  font-size: 75px;
+  font-weight: bold;
+  border: 1px solid #ccc;
+  height: 140px;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+}
+
+table#mobile_results {
+  background-color: #d5742d;
+}
+
+table#mobile_results th {
+  font-family: "proxima-nova", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  color: #fff;
+  background-color: #d5742d;
+  height: 75px;
+  font-size: 75px;
+}
+
+table#mobile_results td {
+  font-family: "proxima-nova", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  height: 50px;
+  font-size: 74px;
+}
