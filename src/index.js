@@ -16,4 +16,4 @@ render((
     <Router />
   </BrowserRouter>
 ), document.getElementById('root'));
-registerServiceWorker();
+// registerServiceWorker();
