@@ -203,9 +203,8 @@ class LandingPage extends Component {
     const barlength = this.state.selectedBarlength;
     const pitch = this.state.selectedPitch;
     const gauge = this.state.selectedGauge;
-    const kickback = this.state.selectedKickback;
 
-    Api.getReplacements(brand, model, barlength, pitch, gauge, kickback)
+    Api.getReplacements(brand, model, barlength, pitch, gauge, false)
       .then(data => {
         this.setState({ replacements: data });
       })

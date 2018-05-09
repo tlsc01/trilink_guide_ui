@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 
-import Replacements from './selects/replacements';
+import Replacements from './selects/hd_replacements';
 import BrandSelect from './selects/brandSelect';
 import ModelSelect from "./selects/modelSelect";
 import BarlengthSelect from './selects/barlengthSelect';
@@ -8,12 +8,8 @@ import PitchSelect from './selects/pitchSelect';
 import GaugeSelect from './selects/gaugeSelect';
 import './homeDepot.css';
 import { Api } from './services/api';
-import { Button, Grid, Row, Col } from 'react-bootstrap';
-import { bootstrapUtils } from 'react-bootstrap/lib/utils'
 
-bootstrapUtils.addStyle(Button, 'custom');
-
-class LandingPage extends Component {
+class HomeDepot extends Component {
   constructor() {
     super()
     this.state = {
@@ -31,6 +27,7 @@ class LandingPage extends Component {
       selectedPitch: '',
       selectedGauge: '',
       selectedKickback: '',
+      homeDepotUrl: '',
     }
   }
 
@@ -76,10 +73,17 @@ class LandingPage extends Component {
                         if (data.length === 1) {
                           const gauge = data[0].gauge;
                           this.setState({selectedGauge: gauge});
-                          Api.getKickbacks(brand, model, barlength, pitch, gauge)
+
+                          Api.getHomeDepotReplacements(brand, model, barlength, pitch, gauge)
                             .then(data => {
-                              this.setState({kickbacks: data})
-                            });
+                              if ( data.length > 0 ) {
+                                Api.getHomeDepotLink(data[0].stripped_barlength, data[0].stripped_chain, data[0].stripped_pitch, data[0].gauge)
+                                  .then(data => {
+                                    console.log("Found this home depot link : ", data);
+                                    this.setState({ homeDepotUrl: data[0].url })
+                                  })
+                                }
+                            })
                         } 
                       });
                   }
@@ -128,6 +132,18 @@ class LandingPage extends Component {
                     if (data.length === 1) {
                       const gauge = data[0].gauge;
                       this.setState({selectedGauge: gauge});
+
+                      Api.getHomeDepotReplacements(brand, model, barlength, pitch, gauge)
+                        .then(data => {
+                          this.setState({ replacements: data });
+                          if ( data.length > 0 ) {
+                            Api.getHomeDepotLink(data[0].stripped_barlength, data[0].stripped_chain, data[0].stripped_pitch, data[0].gauge)
+                            .then(data => {
+                              console.log("Found this home depot link : ", data);
+                              this.setState({ homeDepotUrl: data[0].url })
+                            })
+                          }
+                        })
                     }
                   });
               }
@@ -158,6 +174,18 @@ class LandingPage extends Component {
               if (data.length === 1) {
                 const gauge = data[0].gauge;
                 this.setState({selectedGauge: gauge});
+
+                Api.getHomeDepotReplacements(brand, model, barlength, pitch, gauge)
+                  .then(data => {
+                    this.setState({ replacements: data });
+                    if ( data.length > 0 ) {
+                      Api.getHomeDepotLink(data[0].stripped_barlength, data[0].stripped_chain, data[0].stripped_pitch, data[0].gauge)
+                      .then(data => {
+                        console.log("Found this home depot link : ", data);
+                        this.setState({ homeDepotUrl: data[0].url })
+                      })
+                    }
+                  })
               }
             });
         }
@@ -172,7 +200,24 @@ class LandingPage extends Component {
 
   handleGaugeChange = (e) => {
     this.setState({ selectedGauge: e.target.value });
-    this.setState({ replacements: [] });
+    // this.setState({ replacements: [] });
+    const brand = this.state.selectedBrand;
+    const model = this.state.selectedModel;
+    const barlength = this.state.selectedBarlength;
+    const pitch = this.state.selectedPitch;
+    const gauge = this.state.selectedGauge;
+
+    Api.getHomeDepotReplacements(brand, model, barlength, pitch, gauge)
+    .then(data => {
+      this.setState({ replacements: data });
+      if ( data.length > 0 ) {
+        Api.getHomeDepotLink(data[0].stripped_barlength, data[0].stripped_chain, data[0].stripped_pitch, data[0].gauge)
+        .then(data => {
+          console.log("Found this home depot link : ", data);
+          this.setState({ homeDepotUrl: data[0].url })
+        })
+      }
+    })
   }
 
   // handleKickbackChange = (e) => {
@@ -204,11 +249,18 @@ class LandingPage extends Component {
     const barlength = this.state.selectedBarlength;
     const pitch = this.state.selectedPitch;
     const gauge = this.state.selectedGauge;
-    const kickback = this.state.selectedKickback;
 
-    Api.getReplacements(brand, model, barlength, pitch, gauge, kickback)
+    Api.getHomeDepotReplacements(brand, model, barlength, pitch, gauge)
       .then(data => {
         this.setState({ replacements: data });
+
+        if ( data.length > 0 ) {
+          Api.getHomeDepotLink(data[0].stripped_barlength, data[0].stripped_chain, data[0].stripped_pitch, data[0].gauge)
+          .then(data => {
+            console.log("Found this home depot link : ", data);
+            this.setState({ homeDepotUrl: data[0].url })
+          })
+        }
       })
   }
 
@@ -241,54 +293,59 @@ class LandingPage extends Component {
           <br/>
           <br/>
           <br/>
-          <table width="100%" border="0" cellspacing="0" cellpadding="0">
-            <tr>
-              <td colspan="5">
-                <img src="arrows.png" width="100%" alt="Bar Length" />
-              </td>
-            </tr>
-            <tr>
-                  <td>
-                    <BrandSelect
-                      brands={this.state.brands}
-                      selectedBrand={this.state.selectedBrand}
-                      handleBrandChange={this.handleBrandChange}
-                    />
-                  </td>
-                  <td>
-                    <ModelSelect
-                      models={this.state.models}
-                      selectedModel={this.state.selectedModel}
-                      handleModelChange={this.handleModelChange}
-                    />                
-                  </td>
-                  <td>
-                    <BarlengthSelect
-                      barlengths={this.state.barlengths}
-                      selectedBarlength={this.state.selectedBarlength}
-                      handleBarlengthChange={this.handleBarlengthChange}
-                    />
-                  </td>
-                  <td>
-                    <PitchSelect
-                      pitches={this.state.pitches}
-                      selectedPitch={this.state.selectedPitch}
-                      handlePitchChange={this.handlePitchChange}
-                    />
-                  </td>
-                  <td>
-                    <GaugeSelect
-                      gauges={this.state.gauges}
-                      selectedGauge={this.state.selectedGauge}
-                      handleGaugeChange={this.handleGaugeChange}
-                    />
-                  </td>
-                </tr>
+          <table width="100%" border="0" cellSpacing="0" cellPadding="0">
+            <tbody>
+              <tr>
+                <td colSpan="5">
+                  <img src="arrows.png" width="100%" alt="Bar Length" />
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <BrandSelect
+                    brands={this.state.brands}
+                    selectedBrand={this.state.selectedBrand}
+                    handleBrandChange={this.handleBrandChange}
+                  />
+                </td>
+                <td>
+                  <ModelSelect
+                    models={this.state.models}
+                    selectedModel={this.state.selectedModel}
+                    handleModelChange={this.handleModelChange}
+                  />                
+                </td>
+                <td>
+                  <BarlengthSelect
+                    barlengths={this.state.barlengths}
+                    selectedBarlength={this.state.selectedBarlength}
+                    handleBarlengthChange={this.handleBarlengthChange}
+                  />
+                </td>
+                <td>
+                  <PitchSelect
+                    pitches={this.state.pitches}
+                    selectedPitch={this.state.selectedPitch}
+                    handlePitchChange={this.handlePitchChange}
+                  />
+                </td>
+                <td>
+                  <GaugeSelect
+                    gauges={this.state.gauges}
+                    selectedGauge={this.state.selectedGauge}
+                    handleGaugeChange={this.handleGaugeChange}
+                  />
+                </td>
+              </tr>
+            </tbody>
           </table>
+          <br/>
+          <br/>
+          <Replacements replacements={this.state.replacements} url={this.state.homeDepotUrl} />
         </div>
       </div>
     )
   }
 }
 
-export default LandingPage
+export default HomeDepot

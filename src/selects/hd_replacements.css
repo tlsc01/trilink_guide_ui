@@ -1,16 +1,16 @@
 
-.replacements {
+.hd_replacements {
   font-family: Arial, Helvetica, sans-serif;
   font-size: 14px;
   border-collapse: collapse;
   width: 100%;
 }
 
-.replacements th {
+.hd_replacements th {
   padding-top: 12px;
   padding-bottom: 12px;
   padding-left: 12px; 
-  background-color: #160a8b;
+  background-color: #ee7421;
   color: white;
 }
 
@@ -27,7 +27,7 @@
   background-color: #ddd;
 }
 
-/* .hd_replacement table th {
+.hd_replacement table th {
   padding: 4px !important;
   background-color: #ee7421;
   color: black !important;
@@ -36,4 +36,21 @@
   font-size: 14px !important;
   text-align: center;
   line-height: 18px !important;
-} */
+}
+
+.hd_replacements td {
+  border-right: 1px solid #ddd;
+}
+
+.hd_replacements td {
+  padding: 5px 5px 5px 5px;
+}
+
+.hd_replacements .start {
+  width: 100px;
+  text-align: center;
+}
+
+.hd_replacements .end {
+  border-right: 0px !important;
+}

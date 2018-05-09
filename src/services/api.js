@@ -42,11 +42,28 @@ const getKickbacks = (brand, model, barlength, pitch, gauge) => {
     })
 };
 
-const getReplacements = (brand, model, barlength, pitch, gauge, kickback) => {
-  return axios.get(`http://localhost:3000/api/v1/replacements?brand=${brand}&model=${model}&barlength=${barlength}&pitch=${pitch}&gauge=${gauge}&kickback=${kickback}`)
+const getReplacements = (brand, model, barlength, pitch, gauge) => {
+  return axios.get(`http://localhost:3000/api/v1/replacements?brand=${brand}&model=${model}&barlength=${barlength}&pitch=${pitch}&gauge=${gauge}&home=${false}`)
+    .then(res => {
+      console.log("return data : ", res.data);
+      return res.data;
+    });
+}
+
+const getHomeDepotReplacements = (brand, model, barlength, pitch, gauge) => {
+  return axios.get(`http://localhost:3000/api/v1/replacements?brand=${brand}&model=${model}&barlength=${barlength}&pitch=${pitch}&gauge=${gauge}&home=${true}`)
+    .then(res => {
+      console.log("return data : ", res.data);
+      return res.data;
+    });
+}
+
+const getHomeDepotLink = (barlength, drivelink, pitch, gauge) => {
+  console.log("incoming params : ", barlength + " " + drivelink + " " + pitch + " " + gauge);
+  return axios.get(`http://localhost:3000/api/v1/depot_link?barlength=${barlength}&drivelink=${drivelink}&pitch=${pitch}&gauge=${gauge}`)
     .then(res => {
       return res.data;
-    })
+    });
 }
 
 export const Api = {
@@ -56,5 +73,7 @@ export const Api = {
   getPitches,
   getGauges,
   getKickbacks,
-  getReplacements
+  getReplacements,
+  getHomeDepotLink,
+  getHomeDepotReplacements,
 }
