@@ -76,6 +76,8 @@ class HomeDepot extends Component {
 
                           Api.getHomeDepotReplacements(brand, model, barlength, pitch, gauge)
                             .then(data => {
+                              this.setState({ replacements: data });
+
                               if ( data.length > 0 ) {
                                 Api.getHomeDepotLink(data[0].stripped_barlength, data[0].stripped_chain, data[0].stripped_pitch, data[0].gauge)
                                   .then(data => {
