@@ -45,7 +45,6 @@ const getKickbacks = (brand, model, barlength, pitch, gauge) => {
 const getReplacements = (brand, model, barlength, pitch, gauge) => {
   return axios.get(`${process.env.REACT_APP_BASE_API_URI}/replacements?brand=${brand}&model=${model}&barlength=${barlength}&pitch=${pitch}&gauge=${gauge}&home=${false}`)
     .then(res => {
-      console.log("return data : ", res.data);
       return res.data;
     });
 }
@@ -53,13 +52,11 @@ const getReplacements = (brand, model, barlength, pitch, gauge) => {
 const getHomeDepotReplacements = (brand, model, barlength, pitch, gauge) => {
   return axios.get(`${process.env.REACT_APP_BASE_API_URI}/replacements?brand=${brand}&model=${model}&barlength=${barlength}&pitch=${pitch}&gauge=${gauge}&home=${true}`)
     .then(res => {
-      console.log("return data : ", res.data);
       return res.data;
     });
 }
 
 const getHomeDepotLink = (barlength, drivelink, pitch, gauge) => {
-  console.log("incoming params : ", barlength + " " + drivelink + " " + pitch + " " + gauge);
   return axios.get(`${process.env.REACT_APP_BASE_API_URI}/depot_link?barlength=${barlength}&drivelink=${drivelink}&pitch=${pitch}&gauge=${gauge}`)
     .then(res => {
       return res.data;
