@@ -7,7 +7,7 @@ const buildBarlengths = (incomingBarlengths, selectedBarlength, handleBarlengthC
     return <option key={key} value={barlength.barlength}>{barlength.barlength}</option>
   });
 
-  options.unshift(<option key='none_selected' value="">Select a Barlength</option>)
+  options.unshift(<option key='none_selected' value="">+ BAR LENGTH</option>)
 
   return (
     <div className="custom-select">

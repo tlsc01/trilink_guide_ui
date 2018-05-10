@@ -8,11 +8,12 @@ const buildBrands = (incomingBrands, selectedBrand, handleBrandChange) => {
     return <option key={key} value={brand}>{brand}</option>
   });
 
-  options.unshift(<option key='none_selected' value="">Select a Brand</option>)
+  options.unshift(<option key='none_selected' value="">+ BRAND</option>)
 
   return (
     <div className="custom-select">
       <select
+        id="brand"
         onChange={handleBrandChange}
         value={selectedBrand}>
         {options}

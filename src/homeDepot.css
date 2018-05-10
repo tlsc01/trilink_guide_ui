@@ -38,10 +38,103 @@
     content: url("header-mobile.png");
   }
 
+  #desktop {
+    display: none;
+  }
+
   .guide-title {
     font-size: 34px; 
     font-weight: bold;
     font-family: "proxima-nova", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  }
+
+  table tbody tr td img {
+    display: none;
+  }
+
+  select#brand {
+    color: #fff;
+    background: url("./selects/mobile_brand.png");
+    border: 1px solid #111;
+    font-family: "proxima-nova", "Helvetica Neue", Helvetica, Arial, sans-serif;
+    width: 100%;
+    padding: 5px 5px 5px 45px;
+    margin-bottom: 5px;
+    font-size: 75px;
+    font-weight: bold;
+    border: 1px solid #ccc;
+    height: 140px;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+  }
+
+  select#model, select#blank_model {
+    color: #fff;
+    background: url("./selects/mobile_model.png");
+    border: 1px solid #111;
+    font-family: "proxima-nova", "Helvetica Neue", Helvetica, Arial, sans-serif;
+    width: 100%;
+    margin-bottom: 5px;
+    padding: 5px 5px 5px 45px;
+    font-size: 75px;
+    font-weight: bold;
+    border: 1px solid #ccc;
+    height: 140px;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+  }
+  
+  select#barlength, select#blank_barlength {
+    color: #fff;
+    background: url("./selects/mobile_barlength.png");
+    border: 1px solid #111;
+    font-family: "proxima-nova", "Helvetica Neue", Helvetica, Arial, sans-serif;
+    width: 100%;
+    margin-bottom: 5px;
+    padding: 5px 5px 5px 45px;
+    font-size: 75px;
+    font-weight: bold;
+    border: 1px solid #ccc;
+    height: 140px;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+  }
+  
+  select#pitch, select#blank_pitch {
+    color: #fff;
+    background: url("./selects/mobile_pitch.png");
+    border: 1px solid #111;
+    font-family: "proxima-nova", "Helvetica Neue", Helvetica, Arial, sans-serif;
+    width: 100%;
+    margin-bottom: 5px;
+    padding: 5px 5px 5px 45px;
+    font-size: 75px;
+    font-weight: bold;
+    border: 1px solid #ccc;
+    height: 140px;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+  }
+  
+  select#gauge, select#blank_gauge {
+    color: #fff;
+    background: url("./selects/mobile_gauge.png");
+    border: 1px solid #111;
+    font-family: "proxima-nova", "Helvetica Neue", Helvetica, Arial, sans-serif;
+    width: 100%;
+    margin-bottom: 5px;
+    padding: 5px 5px 5px 45px;
+    font-size: 75px;
+    font-weight: bold;
+    border: 1px solid #ccc;
+    height: 140px;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
   }
   
   #guide-description {
@@ -72,4 +165,10 @@
     -moz-appearance: none;
     appearance: none;
   } */
+}
+
+@media (min-width: 600px) {
+  #mobile {
+    display: none;
+  }
 }

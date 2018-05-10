@@ -7,7 +7,7 @@ const buildPitches = (incomingPitches, selectedPitch, handlePitchChange) => {
     return <option key={key} value={pitch.pitch}>{pitch.pitch}</option>
   });
 
-  options.unshift(<option key='none_selected' value="">Select a Pitch</option>)
+  options.unshift(<option key='none_selected' value="">+ PITCH</option>)
 
   return (
     <div className="custom-select">

@@ -7,7 +7,7 @@ const buildGauges = (incomingGauges, selectedGauge, handleGaugeChange) => {
     return <option key={key} value={gauge.gauge}>{gauge.gauge}</option>
   });
 
-  options.unshift(<option key='none_selected' value="">Select a Gauge</option>)
+  options.unshift(<option key='none_selected' value="">+ GAUGE</option>)
 
   return (
     <div className="custom-select">

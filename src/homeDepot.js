@@ -295,55 +295,89 @@ class HomeDepot extends Component {
           <br/>
           <br/>
           <br/>
-          <table width="100%" border="0" cellSpacing="0" cellPadding="0">
-            <tbody>
-              <tr>
-                <td colSpan="5">
-                  <img src="arrows.png" width="100%" alt="Bar Length" />
-                </td>
-              </tr>
-              <tr>
-                <td>
-                  <BrandSelect
-                    brands={this.state.brands}
-                    selectedBrand={this.state.selectedBrand}
-                    handleBrandChange={this.handleBrandChange}
-                  />
-                </td>
-                <td>
-                  <ModelSelect
-                    models={this.state.models}
-                    selectedModel={this.state.selectedModel}
-                    handleModelChange={this.handleModelChange}
-                  />                
-                </td>
-                <td>
-                  <BarlengthSelect
-                    barlengths={this.state.barlengths}
-                    selectedBarlength={this.state.selectedBarlength}
-                    handleBarlengthChange={this.handleBarlengthChange}
-                  />
-                </td>
-                <td>
-                  <PitchSelect
-                    pitches={this.state.pitches}
-                    selectedPitch={this.state.selectedPitch}
-                    handlePitchChange={this.handlePitchChange}
-                  />
-                </td>
-                <td>
-                  <GaugeSelect
-                    gauges={this.state.gauges}
-                    selectedGauge={this.state.selectedGauge}
-                    handleGaugeChange={this.handleGaugeChange}
-                  />
-                </td>
-              </tr>
-            </tbody>
-          </table>
-          <br/>
-          <br/>
-          <Replacements replacements={this.state.replacements} url={this.state.homeDepotUrl} />
+          <div id="desktop"> 
+            <table width="100%" border="0" cellSpacing="0" cellPadding="0">
+              <tbody>
+                <tr>
+                  <td colSpan="5">
+                    <img src="arrows.png" width="100%" alt="Bar Length" />
+                  </td>
+                </tr>
+                <tr>
+                  <td>
+                    <BrandSelect
+                      brands={this.state.brands}
+                      selectedBrand={this.state.selectedBrand}
+                      handleBrandChange={this.handleBrandChange}
+                    />
+                  </td>
+                  <td>
+                    <ModelSelect
+                      models={this.state.models}
+                      selectedModel={this.state.selectedModel}
+                      handleModelChange={this.handleModelChange}
+                    />                
+                  </td>
+                  <td>
+                    <BarlengthSelect
+                      barlengths={this.state.barlengths}
+                      selectedBarlength={this.state.selectedBarlength}
+                      handleBarlengthChange={this.handleBarlengthChange}
+                    />
+                  </td>
+                  <td>
+                    <PitchSelect
+                      pitches={this.state.pitches}
+                      selectedPitch={this.state.selectedPitch}
+                      handlePitchChange={this.handlePitchChange}
+                    />
+                  </td>
+                  <td>
+                    <GaugeSelect
+                      gauges={this.state.gauges}
+                      selectedGauge={this.state.selectedGauge}
+                      handleGaugeChange={this.handleGaugeChange}
+                    />
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          
+            <br/>
+            <br/>
+            <Replacements replacements={this.state.replacements} url={this.state.homeDepotUrl} />
+          </div>
+          <div id="mobile">
+            <BrandSelect
+              brands={this.state.brands}
+              selectedBrand={this.state.selectedBrand}
+              handleBrandChange={this.handleBrandChange}
+            />
+
+            <ModelSelect
+              models={this.state.models}
+              selectedModel={this.state.selectedModel}
+              handleModelChange={this.handleModelChange}
+            />
+
+            <BarlengthSelect
+              barlengths={this.state.barlengths}
+              selectedBarlength={this.state.selectedBarlength}
+              handleBarlengthChange={this.handleBarlengthChange}
+            />
+
+            <PitchSelect
+              pitches={this.state.pitches}
+              selectedPitch={this.state.selectedPitch}
+              handlePitchChange={this.handlePitchChange}
+            />
+
+            <GaugeSelect
+              gauges={this.state.gauges}
+              selectedGauge={this.state.selectedGauge}
+              handleGaugeChange={this.handleGaugeChange}
+            />
+          </div>
         </div>
       </div>
     )
