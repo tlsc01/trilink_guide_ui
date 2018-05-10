@@ -1,6 +1,7 @@
 import React from 'react';
 
 const buildButton = (url) => {
+  console.log('>>>>>> Do we have a url? ', url);
   if (url) {
     return (
       <div>

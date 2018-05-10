@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 
 import Replacements from './selects/hd_replacements';
+import MobileReplacements from './selects/hd_mobile_replacements';
 import BrandSelect from './selects/brandSelect';
 import ModelSelect from "./selects/modelSelect";
 import BarlengthSelect from './selects/barlengthSelect';
@@ -377,6 +378,8 @@ class HomeDepot extends Component {
               selectedGauge={this.state.selectedGauge}
               handleGaugeChange={this.handleGaugeChange}
             />
+            <br/>
+            <MobileReplacements replacements={this.state.replacements} url={this.state.homeDepotUrl} />
           </div>
         </div>
       </div>

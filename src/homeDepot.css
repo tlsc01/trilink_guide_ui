@@ -48,8 +48,13 @@
     font-family: "proxima-nova", "Helvetica Neue", Helvetica, Arial, sans-serif;
   }
 
-  table tbody tr td img {
-    display: none;
+  table tbody tr td {
+    padding: 10px 10px 10px 10px;
+  }
+
+  table tbody tr td img#chain {
+    /* display: none; */
+
   }
 
   select#brand {
@@ -63,7 +68,7 @@
     font-size: 45px;
     font-weight: bold;
     border: 1px solid #ccc;
-    height: 100px;
+    height: 75px;
     -webkit-appearance: none;
     -moz-appearance: none;
     appearance: none;
@@ -80,7 +85,7 @@
     font-size: 45px;
     font-weight: bold;
     border: 1px solid #ccc;
-    height: 100px;
+    height: 75px;
     -webkit-appearance: none;
     -moz-appearance: none;
     appearance: none;
@@ -97,7 +102,7 @@
     font-size: 45px;
     font-weight: bold;
     border: 1px solid #ccc;
-    height: 100px;
+    height: 75px;
     -webkit-appearance: none;
     -moz-appearance: none;
     appearance: none;
@@ -114,7 +119,7 @@
     font-size: 45px;
     font-weight: bold;
     border: 1px solid #ccc;
-    height: 100px;
+    height: 75px;
     -webkit-appearance: none;
     -moz-appearance: none;
     appearance: none;
@@ -131,7 +136,7 @@
     font-size: 45px;
     font-weight: bold;
     border: 1px solid #ccc;
-    height: 100px;
+    height: 75px;
     -webkit-appearance: none;
     -moz-appearance: none;
     appearance: none;
@@ -149,26 +154,17 @@
     font-family: "proxima-nova", "Helvetica Neue", Helvetica, Arial, sans-serif;
   }
 
-  /* select#brand {
-    color: #fff;
-    background: url("images/mobile_brand.png");
-    border: 1px solid #111;
-    font-family: "proxima-nova", "Helvetica Neue", Helvetica, Arial, sans-serif;
-    width: 100%;
-    padding: 5px 5px 5px 45px;
-    margin-bottom: 5px;
-    font-size: 75px;
-    font-weight: bold;
-    border: 1px solid #ccc;
-    height: 140px;
-    -webkit-appearance: none;
-    -moz-appearance: none;
-    appearance: none;
-  } */
+  #desktop_rows {
+    display: none;
+  }
 }
 
 @media (min-width: 600px) {
   #mobile {
+    display: none;
+  }
+
+  #mobile_rows {
     display: none;
   }
 }

@@ -1,3 +1,17 @@
+.hd_mobile_replacements {
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 34px;
+  border-collapse: collapse;
+  width: 100%;
+}
+
+.hd_mobile_replacements th {
+  padding-top: 12px;
+  padding-bottom: 12px;
+  padding-left: 12px; 
+  background-color: #ee7421;
+  color: white;
+}
 
 .hd_replacements {
   font-family: Arial, Helvetica, sans-serif;
