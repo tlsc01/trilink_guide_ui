@@ -12,6 +12,7 @@ const buildModels = (incomingModels, selectedModel, handleModelChange) => {
   return (
     <div className="custom-select">
       <select
+        id="model"
         onChange={handleModelChange}
         value={selectedModel}
         style={{width: '100%'}}>

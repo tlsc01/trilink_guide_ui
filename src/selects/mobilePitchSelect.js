@@ -12,6 +12,7 @@ const buildPitches = (incomingPitches, selectedPitch, handlePitchChange) => {
   return (
     <div className="custom-select">
       <select
+        id="pitch"
         onChange={handlePitchChange}
         value={selectedPitch}
         style={{width: '100%'}}>
@@ -21,7 +22,7 @@ const buildPitches = (incomingPitches, selectedPitch, handlePitchChange) => {
   );
 }
 
-const PitchSelect = (props) => {
+const MobilePitchSelect = (props) => {
   return (
     <div>
       {buildPitches(props.pitches, props.selectedPitch, props.handlePitchChange)}
@@ -29,4 +30,4 @@ const PitchSelect = (props) => {
   )
 };
 
-export default PitchSelect;
+export default MobilePitchSelect;

@@ -13,6 +13,7 @@ const buildBrands = (incomingBrands, selectedBrand, handleBrandChange) => {
   return (
     <div className="custom-select">
       <select
+        id="brand"
         onChange={handleBrandChange}
         value={selectedBrand}>
         {options}

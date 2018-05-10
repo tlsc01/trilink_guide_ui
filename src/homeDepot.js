@@ -7,6 +7,13 @@ import ModelSelect from "./selects/modelSelect";
 import BarlengthSelect from './selects/barlengthSelect';
 import PitchSelect from './selects/pitchSelect';
 import GaugeSelect from './selects/gaugeSelect';
+
+import MobileBrandSelect from './selects/mobileBrandSelect';
+import MobileModelSelect from "./selects/mobileModelSelect";
+import MobileBarlengthSelect from './selects/mobileBarlengthSelect';
+import MobilePitchSelect from './selects/mobilePitchSelect';
+import MobileGaugeSelect from './selects/mobileGaugeSelect';
+
 import './homeDepot.css';
 import { Api } from './services/api';
 
@@ -349,31 +356,31 @@ class HomeDepot extends Component {
             <Replacements replacements={this.state.replacements} url={this.state.homeDepotUrl} />
           </div>
           <div id="mobile">
-            <BrandSelect
+            <MobileBrandSelect
               brands={this.state.brands}
               selectedBrand={this.state.selectedBrand}
               handleBrandChange={this.handleBrandChange}
             />
 
-            <ModelSelect
+            <MobileModelSelect
               models={this.state.models}
               selectedModel={this.state.selectedModel}
               handleModelChange={this.handleModelChange}
             />
 
-            <BarlengthSelect
+            <MobileBarlengthSelect
               barlengths={this.state.barlengths}
               selectedBarlength={this.state.selectedBarlength}
               handleBarlengthChange={this.handleBarlengthChange}
             />
 
-            <PitchSelect
+            <MobilePitchSelect
               pitches={this.state.pitches}
               selectedPitch={this.state.selectedPitch}
               handlePitchChange={this.handlePitchChange}
             />
 
-            <GaugeSelect
+            <MobileGaugeSelect
               gauges={this.state.gauges}
               selectedGauge={this.state.selectedGauge}
               handleGaugeChange={this.handleGaugeChange}

@@ -12,6 +12,7 @@ const buildGauges = (incomingGauges, selectedGauge, handleGaugeChange) => {
   return (
     <div className="custom-select">
       <select
+        id="gauge"
         onChange={handleGaugeChange}
         value={selectedGauge}
         style={{width: '100%'}}>
@@ -21,7 +22,7 @@ const buildGauges = (incomingGauges, selectedGauge, handleGaugeChange) => {
   );
 }
 
-const GaugeSelect = (props) => {
+const MobileGaugeSelect = (props) => {
   return (
     <div>
       {buildGauges(props.gauges, props.selectedGauge, props.handleGaugeChange)}
@@ -29,4 +30,4 @@ const GaugeSelect = (props) => {
   )
 };
 
-export default GaugeSelect;
+export default MobileGaugeSelect;

@@ -12,6 +12,7 @@ const buildBarlengths = (incomingBarlengths, selectedBarlength, handleBarlengthC
   return (
     <div className="custom-select">
       <select
+        id="model"
         onChange={handleBarlengthChange}
         value={selectedBarlength}
         style={{width: '100%'}}>
@@ -21,7 +22,7 @@ const buildBarlengths = (incomingBarlengths, selectedBarlength, handleBarlengthC
   );
 }
 
-const BarlengthSelect = (props) => {
+const MobileBarlengthSelect = (props) => {
   return (
     <div>
       {buildBarlengths(props.barlengths, props.selectedBarlength, props.handleBarlengthChange)}
@@ -29,4 +30,4 @@ const BarlengthSelect = (props) => {
   )
 };
 
-export default BarlengthSelect;
+export default MobileBarlengthSelect;
