@@ -2,6 +2,7 @@ import React from 'react';
 
 const buildGauges = (incomingGauges, selectedGauge, handleGaugeChange) => {
   let options = incomingGauges.map((gauge, index) => {
+    console.log(">>>>>>> gauge: ", gauge);
     const key_index = gauge.gauge.split(" ").join("_").toLowerCase();
     const key=key_index + "_" + index;
     return <option key={key} value={gauge.gauge}>{gauge.gauge}</option>

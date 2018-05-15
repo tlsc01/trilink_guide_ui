@@ -51,14 +51,14 @@ class HomeDepot extends Component {
     this.setState({ replacements: [] });
     this.setState({ selectedBrand: e.target.value });
     const brand = e.target.value;
-    Api.getModels(e.target.value)
+    Api.getModels(e.target.value, true)
       .then(data => {
         this.setState({models: data})
 
         if (data.length === 1) {
           const model = data[0].model;
           this.setState({selectedModel: model});
-          Api.getBarlengths(brand, model)
+          Api.getBarlengths(brand, model, true)
             .then(data => {
               this.setState({barlengths: data})
 
@@ -67,14 +67,14 @@ class HomeDepot extends Component {
                 this.setState({selectedBarlength: barlength});
                 this.enableSearch();
 
-                Api.getPitches(brand, model, barlength)
+                Api.getPitches(brand, model, barlength, true)
                 .then(data => {
                   this.setState({pitches: data});
     
                   if (data.length === 1) {
                     const pitch = data[0].pitch;
                     this.setState({selectedPitch: pitch});
-                    Api.getGauges(brand, model, barlength, pitch)
+                    Api.getGauges(brand, model, barlength, pitch, true)
                       .then(data => {
                         this.setState({gauges: data});
           
@@ -89,7 +89,6 @@ class HomeDepot extends Component {
                               if ( data.length > 0 ) {
                                 Api.getHomeDepotLink(data[0].stripped_barlength, data[0].stripped_chain, data[0].stripped_pitch, data[0].gauge)
                                   .then(data => {
-                                    console.log("Found this home depot link : ", data);
                                     this.setState({ homeDepotUrl: data[0].url })
                                   })
                                 }
@@ -101,7 +100,6 @@ class HomeDepot extends Component {
               }
             });
         } else if (data.length === 0 || data.length > 1) {
-          console.log('Clearing the selected model');
           this.setState({
             selectedModel: '',
             selectedBarlength: '',
@@ -121,21 +119,21 @@ class HomeDepot extends Component {
 
     this.setState({ selectedModel: model });
     this.setState({ replacements: [] });
-    Api.getBarlengths(this.state.selectedBrand, model)
+    Api.getBarlengths(this.state.selectedBrand, model, true)
       .then(data => {
         this.setState({barlengths: data})
 
         if (data.length === 1) {
           const barlength = data[0].barlength;
           this.setState({selectedBarlength: barlength});
-          Api.getPitches(brand, model, barlength)
+          Api.getPitches(brand, model, barlength, true)
             .then(data => {
               this.setState({pitches: data});
 
               if (data.length === 1) {
                 const pitch = data[0].pitch;
                 this.setState({selectedPitch: pitch});
-                Api.getGauges(brand, model, barlength, pitch)
+                Api.getGauges(brand, model, barlength, pitch, true)
                   .then(data => {
                     this.setState({gauges: data});
       
@@ -149,7 +147,6 @@ class HomeDepot extends Component {
                           if ( data.length > 0 ) {
                             Api.getHomeDepotLink(data[0].stripped_barlength, data[0].stripped_chain, data[0].stripped_pitch, data[0].gauge)
                             .then(data => {
-                              console.log("Found this home depot link : ", data);
                               this.setState({ homeDepotUrl: data[0].url })
                             })
                           }
@@ -170,14 +167,14 @@ class HomeDepot extends Component {
     this.setState({ selectedBarlength: barlength });
     this.enableSearch();
 
-    Api.getPitches(brand, model, barlength)
+    Api.getPitches(brand, model, barlength, true)
       .then(data => {
         this.setState({pitches: data});
 
         if (data.length === 1) {
           const pitch = data[0].pitch;
           this.setState({selectedPitch: pitch});
-          Api.getGauges(brand, model, barlength, pitch)
+          Api.getGauges(brand, model, barlength, pitch, true)
             .then(data => {
               this.setState({gauges: data});
 
@@ -191,7 +188,6 @@ class HomeDepot extends Component {
                     if ( data.length > 0 ) {
                       Api.getHomeDepotLink(data[0].stripped_barlength, data[0].stripped_chain, data[0].stripped_pitch, data[0].gauge)
                       .then(data => {
-                        console.log("Found this home depot link : ", data);
                         this.setState({ homeDepotUrl: data[0].url })
                       })
                     }
@@ -205,7 +201,7 @@ class HomeDepot extends Component {
   handlePitchChange = (e) => {
     this.setState({ selectedPitch: e.target.value });
     this.setState({ replacements: [] });
-    Api.getGauges(this.state.selectedBrand, this.state.selectedModel, this.state.selectedBarlength, e.target.value);
+    Api.getGauges(this.state.selectedBrand, this.state.selectedModel, this.state.selectedBarlength, e.target.value, true);
   }
 
   handleGaugeChange = (e) => {
@@ -223,7 +219,6 @@ class HomeDepot extends Component {
       if ( data.length > 0 ) {
         Api.getHomeDepotLink(data[0].stripped_barlength, data[0].stripped_chain, data[0].stripped_pitch, data[0].gauge)
         .then(data => {
-          console.log("Found this home depot link : ", data);
           this.setState({ homeDepotUrl: data[0].url })
         })
       }
@@ -267,7 +262,6 @@ class HomeDepot extends Component {
         if ( data.length > 0 ) {
           Api.getHomeDepotLink(data[0].stripped_barlength, data[0].stripped_chain, data[0].stripped_pitch, data[0].gauge)
           .then(data => {
-            console.log("Found this home depot link : ", data);
             this.setState({ homeDepotUrl: data[0].url })
           })
         }
@@ -277,7 +271,7 @@ class HomeDepot extends Component {
   
 
   componentDidMount() {
-    Api.getBrands().then(res => {
+    Api.getBrands(true).then(res => {
         this.setState({brands: res});
       })
   }

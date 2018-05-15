@@ -45,14 +45,14 @@ class LandingPage extends Component {
     this.setState({ replacements: [] });
     this.setState({ selectedBrand: e.target.value });
     const brand = e.target.value;
-    Api.getModels(e.target.value)
+    Api.getModels(e.target.value, false)
       .then(data => {
         this.setState({models: data})
 
         if (data.length === 1) {
           const model = data[0].model;
           this.setState({selectedModel: model});
-          Api.getBarlengths(brand, model)
+          Api.getBarlengths(brand, model, false)
             .then(data => {
               this.setState({barlengths: data})
 
@@ -61,21 +61,21 @@ class LandingPage extends Component {
                 this.setState({selectedBarlength: barlength});
                 this.enableSearch();
 
-                Api.getPitches(brand, model, barlength)
+                Api.getPitches(brand, model, barlength, false)
                 .then(data => {
                   this.setState({pitches: data});
     
                   if (data.length === 1) {
                     const pitch = data[0].pitch;
                     this.setState({selectedPitch: pitch});
-                    Api.getGauges(brand, model, barlength, pitch)
+                    Api.getGauges(brand, model, barlength, pitch, false)
                       .then(data => {
                         this.setState({gauges: data});
           
                         if (data.length === 1) {
                           const gauge = data[0].gauge;
                           this.setState({selectedGauge: gauge});
-                          Api.getKickbacks(brand, model, barlength, pitch, gauge)
+                          Api.getKickbacks(brand, model, barlength, pitch, gauge, false)
                             .then(data => {
                               this.setState({kickbacks: data})
                             });
@@ -86,7 +86,6 @@ class LandingPage extends Component {
               }
             });
         } else if (data.length === 0 || data.length > 1) {
-          console.log('Clearing the selected model');
           this.setState({
             selectedModel: '',
             selectedBarlength: '',
@@ -106,21 +105,21 @@ class LandingPage extends Component {
 
     this.setState({ selectedModel: model });
     this.setState({ replacements: [] });
-    Api.getBarlengths(this.state.selectedBrand, model)
+    Api.getBarlengths(this.state.selectedBrand, model, false)
       .then(data => {
         this.setState({barlengths: data})
 
         if (data.length === 1) {
           const barlength = data[0].barlength;
           this.setState({selectedBarlength: barlength});
-          Api.getPitches(brand, model, barlength)
+          Api.getPitches(brand, model, barlength, false)
             .then(data => {
               this.setState({pitches: data});
 
               if (data.length === 1) {
                 const pitch = data[0].pitch;
                 this.setState({selectedPitch: pitch});
-                Api.getGauges(brand, model, barlength, pitch)
+                Api.getGauges(brand, model, barlength, pitch, false)
                   .then(data => {
                     this.setState({gauges: data});
       
@@ -143,14 +142,14 @@ class LandingPage extends Component {
     this.setState({ selectedBarlength: barlength });
     this.enableSearch();
 
-    Api.getPitches(brand, model, barlength)
+    Api.getPitches(brand, model, barlength, false)
       .then(data => {
         this.setState({pitches: data});
 
         if (data.length === 1) {
           const pitch = data[0].pitch;
           this.setState({selectedPitch: pitch});
-          Api.getGauges(brand, model, barlength, pitch)
+          Api.getGauges(brand, model, barlength, pitch, false)
             .then(data => {
               this.setState({gauges: data});
 
@@ -166,7 +165,7 @@ class LandingPage extends Component {
   handlePitchChange = (e) => {
     this.setState({ selectedPitch: e.target.value });
     this.setState({ replacements: [] });
-    Api.getGauges(this.state.selectedBrand, this.state.selectedModel, this.state.selectedBarlength, e.target.value);
+    Api.getGauges(this.state.selectedBrand, this.state.selectedModel, this.state.selectedBarlength, e.target.value, false);
   }
 
   handleGaugeChange = (e) => {
@@ -213,7 +212,7 @@ class LandingPage extends Component {
   
 
   componentDidMount() {
-    Api.getBrands().then(res => {
+    Api.getBrands(false).then(res => {
         this.setState({brands: res});
       })
   }
