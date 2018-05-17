@@ -104,7 +104,7 @@ const getReplacements = (brand, model, barlength, pitch, gauge, homeDepot) => {
       });
   } else {
     var url = `${process.env.REACT_APP_BASE_API_URI}/replacements?${params}`;
-    return axios.get(`${process.env.REACT_APP_BASE_API_URI}/replacements?brand=${brand}&model=${model}&barlength=${barlength}&pitch=${pitch}&gauge=${gauge}&home=${false}`)
+    return axios.get(url)
       .then(res => {
         return res.data;
       });    
