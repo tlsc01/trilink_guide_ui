@@ -46,12 +46,15 @@ const getBarlengths = (brand, model, homeDepot) => {
 
 const getPitches = (brand, model, barlength, homeDepot) => {
   if (homeDepot) {
-    return axios.get(`${process.env.REACT_APP_BASE_API_URI}/hd_pitches.json?brand=${brand}&model=${model}&barlength=${barlength}`)
+    var params = encodeURI(`brand=${brand}&model=${model}&barlength=${barlength}`);
+    var url = `${process.env.REACT_APP_BASE_API_URI}/hd_pitches.json?${params}`;
+    // encodeURIComponent
+    return axios.get(url, {'headers': { contentType: 'application/json; charset=utf-8', dataType: 'json'}})
       .then(res => {
         return res.data;
       })    
   } else {
-    return axios.get(`${process.env.REACT_APP_BASE_API_URI}/pitches.json?brand=${brand}&model=${model}&barlength=${barlength}`)
+    return axios.get(`${process.env.REACT_APP_BASE_API_URI}/pitches.json?brand=${brand}&model=${model}&barlength=${barlength}`, {'headers': { contentType: 'application/json; charset=utf-8', dataType: 'json'}})
       .then(res => {
         return res.data;
       })
@@ -60,7 +63,9 @@ const getPitches = (brand, model, barlength, homeDepot) => {
 
 const getGauges = (brand, model, barlength, pitch, homeDepot) => {
   if (homeDepot) {
-    return axios.get(`${process.env.REACT_APP_BASE_API_URI}/hd_gauges.json?brand=${brand}&model=${model}&barlength=${barlength}&pitch=${pitch}`)
+    var params = encodeURI(`brand=${brand}&model=${model}&barlength=${barlength}&pitch=${pitch}`);
+    var url = `${process.env.REACT_APP_BASE_API_URI}/hd_gauges.json?${params}`;
+    return axios.get(url, {'headers': { contentType: 'application/json; charset=utf-8'}})
       .then(res => {
         console.log(">>>> res.data : ", res.data);
         return res.data;
@@ -83,7 +88,9 @@ const getKickbacks = (brand, model, barlength, pitch, gauge) => {
 
 const getReplacements = (brand, model, barlength, pitch, gauge, homeDepot) => {
   if (homeDepot) {
-    return axios.get(`${process.env.REACT_APP_BASE_API_URI}/replacements?brand=${brand}&model=${model}&barlength=${barlength}&pitch=${pitch}&gauge=${gauge}&home=${false}`)
+    var params = encodeURI(`${brand}&model=${model}&barlength=${barlength}&pitch=${pitch}&gauge=${gauge}&home=${false}`);
+    var url = `${process.env.REACT_APP_BASE_API_URI}/replacements?${params}`;
+    return axios.get(url)
       .then(res => {
         return res.data;
       });
@@ -96,14 +103,18 @@ const getReplacements = (brand, model, barlength, pitch, gauge, homeDepot) => {
 }
 
 const getHomeDepotReplacements = (brand, model, barlength, pitch, gauge) => {
-  return axios.get(`${process.env.REACT_APP_BASE_API_URI}/replacements?brand=${brand}&model=${model}&barlength=${barlength}&pitch=${pitch}&gauge=${gauge}&home=${true}`)
+  var params = encodeURI(`${brand}&model=${model}&barlength=${barlength}&pitch=${pitch}&gauge=${gauge}&home=${true}`);
+  var url = `${process.env.REACT_APP_BASE_API_URI}/replacements?${params}`;
+  return axios.get(url)
     .then(res => {
       return res.data;
     });
 }
 
 const getHomeDepotLink = (barlength, drivelink, pitch, gauge) => {
-  return axios.get(`${process.env.REACT_APP_BASE_API_URI}/depot_link?barlength=${barlength}&drivelink=${drivelink}&pitch=${pitch}&gauge=${gauge}`)
+  var params = encodeURI(`barlength=${barlength}&drivelink=${drivelink}&pitch=${pitch}&gauge=${gauge}`);
+  var url = `${process.env.REACT_APP_BASE_API_URI}/depot_link?${params}`;
+  return axios.get(url)
     .then(res => {
       return res.data;
     });
