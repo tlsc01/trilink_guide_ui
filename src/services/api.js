@@ -45,16 +45,19 @@ const getBarlengths = (brand, model, homeDepot) => {
 };
 
 const getPitches = (brand, model, barlength, homeDepot) => {
+  var params = encodeURI(`brand=${brand}&model=${model}&barlength=${barlength}`);
+
   if (homeDepot) {
-    var params = encodeURI(`brand=${brand}&model=${model}&barlength=${barlength}`);
     var url = `${process.env.REACT_APP_BASE_API_URI}/hd_pitches.json?${params}`;
-    // encodeURIComponent
+
     return axios.get(url, {'headers': { contentType: 'application/json; charset=utf-8', dataType: 'json'}})
       .then(res => {
         return res.data;
       })    
   } else {
-    return axios.get(`${process.env.REACT_APP_BASE_API_URI}/pitches.json?brand=${brand}&model=${model}&barlength=${barlength}`, {'headers': { contentType: 'application/json; charset=utf-8', dataType: 'json'}})
+    var url = `${process.env.REACT_APP_BASE_API_URI}/pitches.json?${params}`;
+
+    return axios.get(url, {'headers': { contentType: 'application/json; charset=utf-8', dataType: 'json'}})
       .then(res => {
         return res.data;
       })
@@ -62,8 +65,9 @@ const getPitches = (brand, model, barlength, homeDepot) => {
 };
 
 const getGauges = (brand, model, barlength, pitch, homeDepot) => {
+  var params = encodeURI(`brand=${brand}&model=${model}&barlength=${barlength}&pitch=${pitch}`);
+
   if (homeDepot) {
-    var params = encodeURI(`brand=${brand}&model=${model}&barlength=${barlength}&pitch=${pitch}`);
     var url = `${process.env.REACT_APP_BASE_API_URI}/hd_gauges.json?${params}`;
     return axios.get(url, {'headers': { contentType: 'application/json; charset=utf-8'}})
       .then(res => {
@@ -71,7 +75,8 @@ const getGauges = (brand, model, barlength, pitch, homeDepot) => {
         return res.data;
       })
   } else {
-    return axios.get(`${process.env.REACT_APP_BASE_API_URI}/gauges.json?brand=${brand}&model=${model}&barlength=${barlength}&pitch=${pitch}`)
+    var url = `${process.env.REACT_APP_BASE_API_URI}/gauges.json?${params}`;
+    return axios.get(url, {'headers': { contentType: 'application/json; charset=utf-8'}})
       .then(res => {
         return res.data;
       })
@@ -80,21 +85,25 @@ const getGauges = (brand, model, barlength, pitch, homeDepot) => {
 };
 
 const getKickbacks = (brand, model, barlength, pitch, gauge) => {
-  return axios.get(`${process.env.REACT_APP_BASE_API_URI}/kickbacks.json?brand=${brand}&model=${model}&barlength=${barlength}&pitch=${pitch}&gauge=${gauge}`)
+  var params = encodeURI(`brand=${brand}&model=${model}&barlength=${barlength}&pitch=${pitch}&gauge=${gauge}`);
+  var url = `${process.env.REACT_APP_BASE_API_URI}/kickbacks.json?${params}`;
+  return axios.get(url)
     .then(res => {
       return res.data;
     })
 };
 
 const getReplacements = (brand, model, barlength, pitch, gauge, homeDepot) => {
-  if (homeDepot) {
-    var params = encodeURI(`${brand}&model=${model}&barlength=${barlength}&pitch=${pitch}&gauge=${gauge}&home=${false}`);
+  var params = encodeURI(`${brand}&model=${model}&barlength=${barlength}&pitch=${pitch}&gauge=${gauge}&home=${false}`);
+
+  if (homeDepot) {  
     var url = `${process.env.REACT_APP_BASE_API_URI}/replacements?${params}`;
     return axios.get(url)
       .then(res => {
         return res.data;
       });
   } else {
+    var url = `${process.env.REACT_APP_BASE_API_URI}/replacements?${params}`;
     return axios.get(`${process.env.REACT_APP_BASE_API_URI}/replacements?brand=${brand}&model=${model}&barlength=${barlength}&pitch=${pitch}&gauge=${gauge}&home=${false}`)
       .then(res => {
         return res.data;
