@@ -126,6 +126,7 @@ class LandingPage extends Component {
                     if (data.length === 1) {
                       const gauge = data[0].gauge;
                       this.setState({selectedGauge: gauge});
+                      this.enableSearch();
                     }
                   });
               }
